@@ -48,9 +48,7 @@
   (define rad (* (random-real) (if (< WIDTH HEIGHT) (- WIDTH px) (- HEIGHT py))))
   (ImageDrawCircle img px py (inexact->exact (truncate rad)) WHITE))
 
-(define (main argv)
-  (format #t "~a~%" argv)
-  (InitWindow WIDTH HEIGHT "Perceptron")
+(define (generage-training-data)
   (define img (GenImageColor WIDTH HEIGHT BLACK))
   (do ((i 0 (1+ i))) ((= i 10))
     (set! img (GenImageColor WIDTH HEIGHT BLACK))
@@ -59,8 +57,12 @@
 
     (set! img (GenImageColor WIDTH HEIGHT BLACK))
     (draw-random-circle img)
-    (image-write-ppm img (format #f "shapes/circle-~a.ppm" i))
-    )
+    (image-write-ppm img (format #f "shapes/circle-~a.ppm" i))))
+
+(define (main argv)
+  (format #t "~a~%" argv)
+  (InitWindow WIDTH HEIGHT "Perceptron")
+  (define img (GenImageColor WIDTH HEIGHT BLACK))
   (CloseWindow)
   )
 
